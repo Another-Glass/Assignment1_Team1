@@ -68,3 +68,19 @@ export const readPostList = async (offset, limit) => {
     throw err;
   }
 }
+
+export const increaseViewCount = async (postId, viewCount) => {
+  try {
+    const post = await Post.findOneAndUpdate(
+      {
+        _id: postId
+      },
+      {
+        viewCount
+      }
+    );
+    return post;
+  } catch (err) {
+    throw err;
+  }
+}

@@ -2,11 +2,11 @@ import util from '../utils/util';
 import statusCode from '../utils/statusCode';
 import responseMessage from '../utils/responseMessage';
 
-import { createPost, readPost, updatePost, destroyPost, readPostList } from '../service/postService';
+import { createPost, readPost, updatePost, destroyPost, readPostList, increaseViewCount } from '../service/postService';
 
 export const postPost = async(req, res) => {
   try {
-    const { id } = req.decoded;
+    const id = req.decoded;
     const {title, content, categoryIdx} = req.body;
 
     if(title === undefined || content === undefined) {
@@ -28,19 +28,23 @@ export const postPost = async(req, res) => {
 export const getPost = async(req, res) => {
   try {
     const { postId } = req.params;
-    console.log(postId);
+    const userId = req.decoded;
+    
     if(postId === undefined) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
     
     const post = await readPost(postId);
-    
+
     if(post === null) {
       return res.status(statusCode.NOT_FOUND)
         .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
-    } 
-
+    }
+    if(post.userId.toString() !== userId) {
+      post.viewCount++;
+      increaseViewCount(postId, post.viewCount);
+    }
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, post));
   } catch {
@@ -51,7 +55,7 @@ export const getPost = async(req, res) => {
 
 export const putPost = async(req, res) => {
   try {
-    const { id } = req.decoded;
+    const id = req.decoded;
     const { postId } = req.params;
     const { title, content, categoryIdx } = req.body;
 
@@ -84,7 +88,7 @@ export const putPost = async(req, res) => {
 
 export const deletePost = async(req, res) => {
   try {
-    const { id } = req.decoded;
+    const id = req.decoded;
     const { postId } = req.params;
     
     if(postId === undefined) {
