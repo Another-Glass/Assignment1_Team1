@@ -4,10 +4,14 @@ import logger from 'morgan';
 import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
-// import routes from './global/routes';
-// import globalRouter from './routes/globalRouter';
-// import userRouter from './routes/userRouter';
+
+import routes from './global/routes';
+import globalRouter from './routes/globalRouter';
+import userRouter from './routes/userRouter';
 // import postRouter from './routes/postRouter';
+
+import connectDB from './utils/db';
+connectDB();
 
 const app = express();
 
@@ -25,8 +29,8 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(routes.root, globalRouter);
-// app.use(routes.user, userRouter);
+app.use(routes.root, globalRouter);
+app.use(routes.user, userRouter);
 // app.use(routes.post, postRouter);
 
 // catch 404 and forward to error handler
