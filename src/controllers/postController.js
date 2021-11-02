@@ -23,3 +23,22 @@ export const postPost = async(req, res) => {
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.CREATE_POST_FAIL))
   }
 }
+
+export const getPost = async(req, res) => {
+  try {
+    const { postId } = req.params;
+    
+    if(postId === undefined) {
+      return res.status(statusCode.BAD_REQUEST)
+        .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+    }
+    
+    const post = await readPost(postId);
+    
+    return res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, post));
+  } catch {
+    return res.status(statusCode.INTERNAL_SERVER_ERROR)
+      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
+  }
+}

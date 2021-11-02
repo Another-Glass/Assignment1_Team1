@@ -12,3 +12,16 @@ export const createPost = async (title, content, userId) => {
     throw err;
   }
 }
+
+export const readPost = async (postId) => {
+  try {
+    const post = await Post.findOne({
+      where: {
+        id: postId,
+      },
+    });
+    return post;
+  } catch (err) {
+    throw err;
+  }
+}

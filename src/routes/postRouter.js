@@ -7,5 +7,7 @@ import { getPost, postPost, getPostList, putPost, deletePost } from '../controll
 const postRouter = express.Router();
 
 postRouter.post(routes.root, checkToken, postPost);
+postRouter.get(routes.postDetail, getPost);
+
 
 export default postRouter;
