@@ -53,3 +53,15 @@ export const destroyPost = async (postId) => {
     throw err;
   }
 }
+
+export const readPostList = async (offset, limit) => {
+  try {
+    const postList = await Post.find()
+      .sort({'createdAt': -1})
+      .limit(limit)
+      .skip(offset)
+    return postList;
+  } catch (err) {
+    throw err;
+  }
+}

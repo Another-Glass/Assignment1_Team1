@@ -97,3 +97,22 @@ export const deletePost = async(req, res) => {
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_POST_FAIL))
   }
 }
+
+export const getPostList = async(req, res) => {
+  try {
+    const { offset, limit } = req.query;
+    
+    if(offset === undefined || limit === undefined) {
+      return res.status(statusCode.BAD_REQUEST)
+        .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+    }
+
+    const postList = await readPostList(Number(offset), Number(limit));
+    
+    return res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, postList));
+  } catch {
+    return res.status(statusCode.INTERNAL_SERVER_ERROR)
+      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
+  }
+}
