@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "de322f6b-6039-4033-a115-4499dd8875b9",
-		"name": "1weak-1st",
+		"name": "1weak-1st for Release",
 		"description": "# Introduction\n위코드 과제 1주차 1번",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1890,14 +1890,42 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODExMGE0ZGY3YmMxZmUzNDFkYTI5NCIsIm5hbWUiOiLrsJXsg4FhMiIsImlhdCI6MTYzNTg2NTIyNywiZXhwIjoxNjM2NDcwMDI3LCJpc3MiOiJjb25zdCJ9.Cn-SiOaoW9tx1rD-2at8lkxwMd6lKacVilXkJHkEzWs"
+			"value": ""
 		},
 		{
 			"key": "server",
-			"value": "localhost:4000"
+			"value": "http://54.180.139.105:3000"
+		},
+		{
+			"key": "commentId",
+			"value": ""
+		},
+		{
+			"key": "postId",
+			"value": ""
 		}
 	]
 }
