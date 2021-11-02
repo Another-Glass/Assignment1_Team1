@@ -2,7 +2,7 @@ import Comment from '../models/commentModel'
 import Post from '../models/postModel'
 const { ObjectId } = require('mongodb');
 
-export const readCommentInPost = async (postId, offset, limit) => {
+export const readCommentsInPost = async (postId, offset, limit) => {
   try {
     const comments = await Comment.find({
         postId:postId
@@ -17,7 +17,7 @@ export const readCommentInPost = async (postId, offset, limit) => {
   }
 }
 
-export const readCommentInComment = async (commentId, offset, limit) => {
+export const readCommentsInComment = async (commentId, offset, limit) => {
   try {
     const comments = await Comment.find({
       parentCommentId:commentId
@@ -27,6 +27,16 @@ export const readCommentInComment = async (commentId, offset, limit) => {
     .skip(offset)
 
     return comments;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export const readComment = async (commentId) => {
+  try {
+    const comment = await Comment.findById(commentId).lean()
+
+    return comment;
   } catch (err) {
     throw err;
   }
@@ -62,14 +72,19 @@ export const creatCommentInComment = async (postId, commentId, userId, content) 
   }
 }
 
-export const updateComment = async (commentId, offset, limit) => {
+export const updateComment = async (commentId, userId, content) => {
   try {
-    const comments = await Comment.find({
-      parentCommentId:commentId
-    })
-    .sort({'createdAt': -1})
-    .limit(limit)
-    .skip(offset)
+    const comments = await Comment.findByIdAndUpdate(commentId, {content:content}).lean();
+    console.log(comments);
+    return comments;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export const removeComment = async (commentId) => {
+  try {
+    const comments = await Comment.findByIdAndDelete(commentId).lean();
 
     return comments;
   } catch (err) {
@@ -77,27 +92,3 @@ export const updateComment = async (commentId, offset, limit) => {
   }
 }
 
-export const deleteComment = async (commentId, offset, limit) => {
-  try {
-    const comments = await Comment.find({
-      parentCommentId:commentId
-    })
-    .sort({'createdAt': -1})
-    .limit(limit)
-    .skip(offset)
-
-    return comments;
-  } catch (err) {
-    throw err;
-  }
-}
-
-export const isCommentExists = async (commentId) => {
-  try {
-    const comment = await Comment.findById(commentId).lean()
-
-    return comment;
-  } catch (err) {
-    throw err;
-  }
-}
