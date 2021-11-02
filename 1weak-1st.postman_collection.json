@@ -1,0 +1,1903 @@
+{
+	"info": {
+		"_postman_id": "de322f6b-6039-4033-a115-4499dd8875b9",
+		"name": "1weak-1st",
+		"description": "# Introduction\n위코드 과제 1주차 1번",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "회원가입",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"길동\",\n    \"email\" : \"test@naver.com\",\n    \"password\" : \"1234\",\n    \"password2\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/user/signup",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "회원가입",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"길동\",\n    \"email\" : \"test@naver.com\",\n    \"password\" : \"1234\",\n    \"password2\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/user/signup",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"signup"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-Ke7D1VKN0j+bafQtEtsDs/GziuI\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:16:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"회원 가입 성공\"\n}"
+				}
+			]
+		},
+		{
+			"name": "로그인",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"token\", body.data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"test@naver.com\",\n    \"password\" : \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/user/signin",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "로그인",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"test@naver.com\",\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/user/signin",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"user",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "524"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"20c-rkKfnTchZn7yvL7DRP+IZfzcUFs\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:18:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"로그인 성공\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODE3MjdhZmVkNGQ0MzA1Y2EwMDgyNiIsIm5hbWUiOiLquLjrj5kiLCJpYXQiOjE2MzU4NzM0ODQsImV4cCI6MTYzNjQ3ODI4NCwiaXNzIjoiY29uc3QifQ.qXEnzEs7fMYVvMxMO8riOgfQ_wGNOM4F74ONrfE_b18\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODE3MjdhZmVkNGQ0MzA1Y2EwMDgyNiIsIm5hbWUiOiLquLjrj5kiLCJpYXQiOjE2MzU4NzM0ODQsImV4cCI6MTYzNzA4MzA4NCwiaXNzIjoiY29uc3QifQ.LxYOyKFcLld_eIucZ_TIdJP5vtzO4SJ6TQZTpJuT6rc\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 생성",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"postId\", body.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"test\",\n    \"content\": \"test1\",\n    \"categoryIdx\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 생성",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test\",\n    \"content\": \"test1\",\n    \"categoryIdx\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-J1XiHLcestB9qtCd74gs79r2tMM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:20:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"게시글 생성 성공\",\n    \"data\": {\n        \"id\": 32\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"test완료\",\n    \"conten\":\"완료\",\n    \"categoryIdx\" : 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts/{{postId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"{{postId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 수정",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"test완료\",\n    \"conten\":\"완료\",\n    \"categoryIdx\" : 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts/{{postId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-xKwaWlTCE1OR49LgJcQLenIBkK4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 15:04:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"게시글 수정 성공\"\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 목록 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/posts?limit=3&offset=0",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 목록 조회",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/posts?limit=3&offset=0",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "648"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"288-yvbI5fPDVKQSQQhJJErgZjdSKPc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 15:06:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"게시글 조회 성공\",\n    \"data\": [\n        {\n            \"_id\": 21,\n            \"title\": \"tes1113\",\n            \"content\": \"test1113\",\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"categoryIdx\": 1,\n            \"viewCount\": \"0\",\n            \"createdAt\": \"2021-11-02T15:01:21.702Z\",\n            \"updatedAt\": \"2021-11-02T15:01:21.702Z\"\n        },\n        {\n            \"_id\": 20,\n            \"title\": \"test\",\n            \"content\": \"test\",\n            \"userId\": \"6180d27a861d8decc65c943e\",\n            \"categoryIdx\": 1,\n            \"viewCount\": \"0\",\n            \"createdAt\": \"2021-11-02T13:28:50.466Z\",\n            \"updatedAt\": \"2021-11-02T13:28:50.466Z\"\n        },\n        {\n            \"_id\": 19,\n            \"title\": \"test\",\n            \"content\": \"test\",\n            \"userId\": \"6180d27a861d8decc65c943e\",\n            \"categoryIdx\": 1,\n            \"viewCount\": \"0\",\n            \"createdAt\": \"2021-11-02T13:28:39.309Z\",\n            \"updatedAt\": \"2021-11-02T13:28:39.309Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 상세 조회",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/posts/{{postId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"{{postId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 상세 조회",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/posts/{{postId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "postId36=36; Max-Age=300; Path=/; Expires=Tue, 02 Nov 2021 17:47:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"106-S8XZ4UXoXXyTZPrdkXN8zEbL/fY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:42:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"게시글 조회 성공\",\n    \"data\": {\n        \"_id\": 36,\n        \"title\": \"test\",\n        \"content\": \"test1\",\n        \"userId\": \"61817834944ae5d8119d1ecb\",\n        \"categoryIdx\": 1,\n        \"viewCount\": \"1\",\n        \"createdAt\": \"2021-11-02T17:41:09.302Z\",\n        \"updatedAt\": \"2021-11-02T17:41:09.302Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 검색",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts/search/1?offset=0&title=test&content=test&limit=2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"search",
+						"1"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "title",
+							"value": "test"
+						},
+						{
+							"key": "content",
+							"value": "test"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 검색",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts/search/1?offset=0&title=test&content=test&limit=2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"search",
+								"1"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "title",
+									"value": "test"
+								},
+								{
+									"key": "content",
+									"value": "test"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "454"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1c6-JmJ2cULqrByTVo3tsxTkfmlMbJE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:24:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"게시글 조회 성공\",\n    \"data\": [\n        {\n            \"_id\": 32,\n            \"title\": \"test\",\n            \"content\": \"test1\",\n            \"userId\": \"6181727afed4d4305ca00826\",\n            \"categoryIdx\": 1,\n            \"viewCount\": \"0\",\n            \"createdAt\": \"2021-11-02T17:20:23.094Z\",\n            \"updatedAt\": \"2021-11-02T17:20:23.094Z\"\n        },\n        {\n            \"_id\": 31,\n            \"title\": \"test\",\n            \"content\": \"test1\",\n            \"userId\": \"6181727afed4d4305ca00826\",\n            \"categoryIdx\": 1,\n            \"viewCount\": \"0\",\n            \"createdAt\": \"2021-11-02T17:20:03.054Z\",\n            \"updatedAt\": \"2021-11-02T17:20:03.054Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/posts/{{postId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"{{postId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글 삭제",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/posts/{{postId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-4uAqzZGEvyUHbHN9f8gWZSA41zk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 15:23:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"게시글 삭제 성공\"\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글 생성 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"postId\", body.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"test\",\n    \"content\": \"test1\",\n    \"categoryIdx\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "게시글의 댓글 생성",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var body = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"commentId\", body.data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"t1e1s1t\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts/{{postId}}/comments",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"{{postId}}",
+						"comments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글의 댓글 생성",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"t1e1s1t\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts/{{postId}}/comments",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}",
+								"comments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-bgz6eTo3KxEZX0EB5YmmcX1lo+0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:21:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"댓글 생성 성공\",\n    \"data\": {\n        \"id\": \"61817385e3cb8949ecd6f572\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "게시글의 댓글 확인",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/posts/28/comments?offset=0&limit=3",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"28",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "게시글의 댓글 확인",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/posts/28/comments?offset=0&limit=3",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"28",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "641"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"281-z/6aX3FQ2/eot2bRbKx4/qg06+Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 16:28:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"댓글 조회 성공\",\n    \"data\": [\n        {\n            \"_id\": \"6181670c5805606cad3768f3\",\n            \"postId\": 28,\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"content\": \"t1e1s1t\",\n            \"depth\": 0,\n            \"createdAt\": \"2021-11-02T16:27:56.478Z\",\n            \"updatedAt\": \"2021-11-02T16:27:56.478Z\"\n        },\n        {\n            \"_id\": \"6181670a5805606cad3768f0\",\n            \"postId\": 28,\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"content\": \"t1es1t\",\n            \"depth\": 0,\n            \"createdAt\": \"2021-11-02T16:27:54.975Z\",\n            \"updatedAt\": \"2021-11-02T16:27:54.975Z\"\n        },\n        {\n            \"_id\": \"618167095805606cad3768ed\",\n            \"postId\": 28,\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"content\": \"tes1t\",\n            \"depth\": 0,\n            \"createdAt\": \"2021-11-02T16:27:53.441Z\",\n            \"updatedAt\": \"2021-11-02T16:27:53.441Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "대댓글생성",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"ㄴㄴㄴ11111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts/16/comments/{{commentId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"16",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "대댓글생성",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"ㄴㄴㄴ11111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts/16/comments/{{commentId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"16",
+								"comments",
+								"{{commentId}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-XcE8gFW/JSt+icJUHdOoCvW4lfs\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 17:21:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"댓글 생성 성공\",\n    \"data\": {\n        \"id\": \"618173ac944ae5d8119d1ea7\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "대댓글확인",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/posts/16/comments/{{commentId}}?offset=0&limit=2",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"16",
+						"comments",
+						"{{commentId}}"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "대댓글확인",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/posts/16/comments/{{commentId}}?offset=0&limit=2",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"16",
+								"comments",
+								"{{commentId}}"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "536"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"218-vQ77uiWbAe3Dw7BspP7txVh6tT0\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 16:40:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"댓글 조회 성공\",\n    \"data\": [\n        {\n            \"_id\": \"618169fd09c03badca3340b3\",\n            \"postId\": 16,\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"parentCommentId\": \"61812c4b1608ce876d7946ca\",\n            \"content\": \"ㄴㄴㄴ11111\",\n            \"createdAt\": \"2021-11-02T16:40:29.322Z\",\n            \"updatedAt\": \"2021-11-02T16:40:29.322Z\"\n        },\n        {\n            \"_id\": \"618169fb09c03badca3340b0\",\n            \"postId\": 16,\n            \"userId\": \"618110a4df7bc1fe341da294\",\n            \"parentCommentId\": \"61812c4b1608ce876d7946ca\",\n            \"content\": \"ㄴㄴㄴ1111\",\n            \"createdAt\": \"2021-11-02T16:40:27.856Z\",\n            \"updatedAt\": \"2021-11-02T16:40:27.856Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "댓글수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"완료\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/posts/16/comments/{{commentId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"16",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "댓글수정",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\":\"완료\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/posts/16/comments/{{commentId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"16",
+								"comments",
+								"{{commentId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-nNsHImc+MakPVmHKG2/Lgo1D9XY\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 16:44:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"success\": true,\n    \"message\": \"댓글 수정 성공\"\n}"
+				}
+			]
+		},
+		{
+			"name": "댓글삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{server}}/posts/16/comments/{{commentId}}",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"posts",
+						"16",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "댓글삭제",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}/posts/16/comments/{{commentId}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"posts",
+								"16",
+								"comments",
+								"{{commentId}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3e-IAw7JqgKVSXl31076XVmcFUdCa8\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 02 Nov 2021 15:25:56 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"success\": true,\n    \"message\": \"댓글 삭제 성공\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODExMGE0ZGY3YmMxZmUzNDFkYTI5NCIsIm5hbWUiOiLrsJXsg4FhMiIsImlhdCI6MTYzNTg2NTIyNywiZXhwIjoxNjM2NDcwMDI3LCJpc3MiOiJjb25zdCJ9.Cn-SiOaoW9tx1rD-2at8lkxwMd6lKacVilXkJHkEzWs"
+		},
+		{
+			"key": "server",
+			"value": "localhost:4000"
+		}
+	]
+}
