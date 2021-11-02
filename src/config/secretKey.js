@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 
+dotenv.config();
+
 export default {
   secretKey: process.env.JWT_SECERT,
   options: {
