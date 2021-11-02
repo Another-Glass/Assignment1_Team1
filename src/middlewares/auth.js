@@ -13,7 +13,7 @@ export const checkToken = async (req, res, next) => {
                 .send(util.fail(statusCode.FORBIDDEN, responseMessage.EMPTY_TOKEN));
         }
         const user = await jwt.verify(token);
-        
+
         if (user === TOKEN_EXPIRED) {
             return res.status(statusCode.FORBIDDEN)
                 .send(util.fail(statusCode.FORBIDDEN, responseMessage.EXPIRED_TOKEN));
@@ -26,6 +26,6 @@ export const checkToken = async (req, res, next) => {
             return res.status(statusCode.FORBIDDEN)
                 .send(util.fail(statusCode.FORBIDDEN, responseMessage.INVALID_TOKEN));
         }
-        req.decoded = user;
+        req.decoded = user.id;
         next();
 }

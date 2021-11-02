@@ -9,7 +9,7 @@ const postRouter = express.Router();
 postRouter.get(routes.root, getPostList);
 postRouter.post(routes.root, checkToken, postPost);
 
-postRouter.get(routes.postDetail, getPost);
+postRouter.get(routes.postDetail, checkToken, getPost);
 postRouter.put(routes.postDetail, checkToken, putPost);
 postRouter.delete(routes.postDetail, checkToken, deletePost);
 
