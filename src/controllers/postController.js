@@ -18,7 +18,7 @@ export const postPost = async(req, res) => {
     
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.CREATE_POST_SUCCESS));
-  } catch {
+  } catch(err) {
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.CREATE_POST_FAIL))
   }
