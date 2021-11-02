@@ -42,3 +42,30 @@ export const getPost = async(req, res) => {
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
   }
 }
+
+export const deletePost = async(req, res) => {
+  try {
+    const { id } = req.decoded;
+    const { postId } = req.params;
+    
+    if(postId === undefined) {
+      return res.status(statusCode.BAD_REQUEST)
+        .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
+    }
+    
+    const findUserId = await readPost(postId);
+    
+    if(findUserId === null || findUserId.userId !== id) {
+      return res.status(statusCode.UNAUTHORIZED)
+        .send(util.fail(statusCode.UNAUTHORIZED, responseMessage.PERMISSION_ERROR));
+    } 
+    
+    await destroyPost(postId);
+    
+    return res.status(statusCode.NO_CONTENT)
+      .send(util.success(statusCode.NO_CONTENT, responseMessage.DELETE_POST_SUCCESS));
+  } catch {
+    return res.status(statusCode.INTERNAL_SERVER_ERROR)
+      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_POST_FAIL))
+  }
+}

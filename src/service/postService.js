@@ -15,11 +15,22 @@ export const createPost = async (title, content, userId) => {
 
 export const readPost = async (postId) => {
   try {
-    const post = await Post.findOne({
-      where: {
-        id: postId,
-      },
+    const post = await Post.findById({
+      postId
     });
+    return post;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export const destroyPost = async (postId) => {
+  try {
+    const post = await Post.findOneAndRemove(
+      {
+        _id: postId
+      }
+    );
     return post;
   } catch (err) {
     throw err;
