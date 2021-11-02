@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { Schema } from 'mongoose'
+import { Schema } from 'mongoose';
+import Comment from './commentModel';
 const autoIdSetter = require('../utils/db/auto-id-setter').autoIdSetter;
 
 const PostSchema = new mongoose.Schema({
@@ -29,16 +30,6 @@ PostSchema.virtual('comments', {
   ref: 'Comment',
   localField: '_id',
   foreignField: 'postId',
-});
-
-PostSchema.pre('remove', async function (next) {
-  const post = this;
-  try {
-    await Comment.deleteMany({ postId: post._id });
-    next();
-  } catch (e) {
-    next();
-  }
 });
 
 autoIdSetter(PostSchema, mongoose, 'post', '_id');

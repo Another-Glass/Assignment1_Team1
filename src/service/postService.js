@@ -46,11 +46,7 @@ export const updatePost = async (title, content, categoryIdx, postId) => {
 
 export const destroyPost = async (postId) => {
   try {
-    const post = await Post.findOneAndRemove(
-      {
-        _id: postId
-      }
-    );
+    const post = await Post.findByIdAndDelete(postId);
     return post;
   } catch (err) {
     throw err;

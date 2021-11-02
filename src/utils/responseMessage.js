@@ -33,8 +33,8 @@ export default {
   // 게시판
   CREATE_POST_SUCCESS: '게시글 생성 성공',
   CREATE_POST_FAIL: '게시글 생성 실패',
-  READ_POST_SUCCESS: '게시글 상세 조회 성공',
-  READ_POST_FAIL: '게시글 상세 조회 실패',
+  READ_POST_SUCCESS: '게시글 조회 성공',
+  READ_POST_FAIL: '게시글 조회 실패',
   UPDATE_POST_SUCCESS: '게시글 수정 성공',
   UPDATE_POST_FAIL:  '게시글 수정 실패',
   DELETE_POST_SUCCESS: '게시글 삭제 성공',

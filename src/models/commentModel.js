@@ -34,7 +34,10 @@ CommentSchema.virtual('comments', {
   foreignField: 'parentCommentId',
 });
 
-CommentSchema.pre('remove', async function (next) {
+let Comment = mongoose.model("Comment", CommentSchema);
+
+/**
+CommentSchema.pre('findOneAndDelete', async function (next) {
   const comment = this;
   try {
     await Comment.deleteMany({ parentCommentId: comment._id });
@@ -43,5 +46,6 @@ CommentSchema.pre('remove', async function (next) {
     next();
   }
 });
+*/
 
-export default mongoose.model("Comment", CommentSchema);
+export default Comment;
