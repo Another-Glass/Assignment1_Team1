@@ -116,7 +116,7 @@
 
 - Postman을 활용하여 API 작동 테스트를 진행했습니다. 
 - root 디렉토리의 1weak-1st.postman_collection.json 파일을 Postman에 import하여 테스트 가능합니다.
-- 자세한 API 명세는 아래에서 확인 가능합니다.
+- __배포된 서버 주소__ 및 자세한 API 명세는 아래에서 확인 가능합니다.
 - [🗂 API Description Link](https://github.com/Another-Glass/Assignment1_Team1/wiki)
 
 </br>
