@@ -4,7 +4,7 @@ import responseMessage from '../utils/responseMessage';
 import encrypt from '../lib/encryption';
 import jwt from '../lib/jwt';
 
-import { signup, checkEmail } from '../service/userService';
+import { signup, checkEmail, signin } from '../service/userService';
 
 export const postSignup = async(req, res) => {
   try {
@@ -55,7 +55,7 @@ export const postSignin = async(req, res) => {
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NO_USER))
     }
     
-    const { salt, password: realPassword } = isEmail.dataValues;
+    const { salt, password: realPassword } = isEmail;
     
     const inputPassword = encrypt.encryption(password, salt);
     
@@ -66,13 +66,13 @@ export const postSignin = async(req, res) => {
     
     const user = await signin(email, inputPassword);
 
-    const { accessToken, refreshToken } = await jwt.sign(user.dataValues);
+    const { accessToken, refreshToken } = await jwt.sign(user);
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.LOGIN_SUCCESS, {
         accessToken,
         refreshToken
       })) 
-  } catch {
+  } catch(err) {
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.LOGIN_FAIL))
   }
