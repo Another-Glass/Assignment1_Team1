@@ -22,8 +22,24 @@ const PostSchema = new mongoose.Schema({
   },
   viewCount: { 
     type: String, required: true
-  },
+  }
 }, { _id : false, timestamps : true, versionKey: false });
+
+PostSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'postId',
+});
+
+PostSchema.pre('remove', async function (next) {
+  const post = this;
+  try {
+    await Comment.deleteMany({ postId: post._id });
+    next();
+  } catch (e) {
+    next();
+  }
+});
 
 autoIdSetter(PostSchema, mongoose, 'post', '_id');
 

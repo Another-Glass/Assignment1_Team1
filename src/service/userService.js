@@ -3,10 +3,10 @@ import User from '../models/userModel';
 export const signup = async (name, email, password, salt) => {
   try {
     const user = await User.create({
-      name,
-      email,
-      password,
-      salt,
+      name:name,
+      email:email,
+      password:password,
+      salt:salt,
     });
     return user;
   } catch (err) {
@@ -17,7 +17,7 @@ export const signup = async (name, email, password, salt) => {
 export const checkEmail = async email => {
   try {
     const alreadyEmail = await User.findOne({
-      email
+      email:email
     });
     return alreadyEmail;
   } catch (err) {
@@ -28,11 +28,9 @@ export const checkEmail = async email => {
 export const signin = async (email, password) => {
   try {
     const user = await User.findOne({
-      where: {
-        email,
-        password
-      },
-    });
+        email:email,
+        password:password
+      });
     return user;
   } catch (err) {
     throw err;
@@ -46,7 +44,7 @@ export const updateRefreshToken = async (id, refreshToken) => {
         _id: id
       },
       {
-        refreshToken
+        refreshToken:refreshToken
       }
     );
     return user;
