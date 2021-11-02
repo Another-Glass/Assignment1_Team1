@@ -8,7 +8,7 @@ const connectDB = async () => {
       // useCreateIndex: true,
       useUnifiedTopology: true,
     });
-
+    
     console.log("Mongoose Connected ...");
   } catch (err) {
     console.error(err.message);

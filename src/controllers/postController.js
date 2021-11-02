@@ -7,18 +7,19 @@ import { createPost, readPost, updatePost, destroyPost, readPostList } from '../
 export const postPost = async(req, res) => {
   try {
     const { id } = req.decoded;
-    const {title, content} = req.body;
+    const {title, content, categoryIdx} = req.body;
 
     if(title === undefined || content === undefined) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
     
-    await createPost(title, content, id);
+    await createPost(title, content, categoryIdx, id);
     
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.CREATE_POST_SUCCESS));
   } catch(err) {
+    console.log(err);
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.CREATE_POST_FAIL))
   }
@@ -27,7 +28,7 @@ export const postPost = async(req, res) => {
 export const getPost = async(req, res) => {
   try {
     const { postId } = req.params;
-    
+    console.log(postId);
     if(postId === undefined) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
@@ -47,7 +48,7 @@ export const putPost = async(req, res) => {
   try {
     const { id } = req.decoded;
     const { postId } = req.params;
-    const { title, content } = req.body;
+    const { title, content, categoryIdx } = req.body;
 
     if(postId === undefined || title === undefined || content === undefined) {
       return res.status(statusCode.BAD_REQUEST)
@@ -61,7 +62,7 @@ export const putPost = async(req, res) => {
         .send(util.fail(statusCode.UNAUTHORIZED, responseMessage.PERMISSION_ERROR));
     } 
     
-    await updatePost(title, content, postId);
+    await updatePost(title, content, categoryIdx, postId);
     
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.UPDATE_POST_SUCCESS));
