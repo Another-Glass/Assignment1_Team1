@@ -16,7 +16,7 @@ export const createPost = async (title, content, userId) => {
 export const readPost = async (postId) => {
   try {
     const post = await Post.findById({
-      postId
+      _id: postId
     });
     return post;
   } catch (err) {

@@ -56,7 +56,7 @@ export const putPost = async(req, res) => {
     
     const findUserId = await readPost(postId);
     
-    if(findUserId === null || findUserId.userId !== id) {
+    if(findUserId === null || findUserId.userId.toString() !== id) {
       return res.status(statusCode.UNAUTHORIZED)
         .send(util.fail(statusCode.UNAUTHORIZED, responseMessage.PERMISSION_ERROR));
     } 
@@ -65,7 +65,7 @@ export const putPost = async(req, res) => {
     
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.UPDATE_POST_SUCCESS));
-  } catch {
+  } catch(err) {
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.UPDATE_POST_FAIL))
   }
