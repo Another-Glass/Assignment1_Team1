@@ -38,5 +38,6 @@ export default {
   UPDATE_POST_SUCCESS: '게시글 수정 성공',
   UPDATE_POST_FAIL:  '게시글 수정 실패',
   DELETE_POST_SUCCESS: '게시글 삭제 성공',
-  DELETE_POST_FAIL: '게시글 삭제 실패'
+  DELETE_POST_FAIL: '게시글 삭제 실패',
+  NO_POST: '해당 게시글이 없습니다.' 
 };
