@@ -2,7 +2,7 @@ import User from '../models/userModel';
 
 export const signup = async (name, email, password, salt) => {
   try {
-    const user = await User.register({
+    const user = await User.create({
       name,
       email,
       password,
