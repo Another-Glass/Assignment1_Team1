@@ -24,6 +24,23 @@ export const readPost = async (postId) => {
   }
 }
 
+export const updatePost = async (title, content, postId) => {
+  try {
+    const post = await Post.findOneAndUpdate(
+      {
+        _id: postId
+      },
+      {
+        title,
+        content
+      }
+    );
+    return post;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export const destroyPost = async (postId) => {
   try {
     const post = await Post.findOneAndRemove(
