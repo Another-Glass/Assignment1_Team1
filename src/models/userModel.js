@@ -21,6 +21,6 @@ const UserSchema = new mongoose.Schema({
   refreshToken: {
     type: String
   },
-});
+}, { versionKey : false });
 
 export default mongoose.model("User", UserSchema);

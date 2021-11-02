@@ -1,11 +1,13 @@
 import Post from '../models/postModel'
 
-export const createPost = async (title, content, userId) => {
+export const createPost = async (title, content, categoryIdx, userId) => {
   try {
     const post = await Post.create({
       title,
       content,
-      userId
+      userId,
+      categoryIdx,
+      viewCount:0
     });
     return post;
   } catch (err) {
@@ -24,7 +26,7 @@ export const readPost = async (postId) => {
   }
 }
 
-export const updatePost = async (title, content, postId) => {
+export const updatePost = async (title, content, categoryIdx, postId) => {
   try {
     const post = await Post.findOneAndUpdate(
       {
@@ -32,7 +34,8 @@ export const updatePost = async (title, content, postId) => {
       },
       {
         title,
-        content
+        content,
+        categoryIdx
       }
     );
     return post;
