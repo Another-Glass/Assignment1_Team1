@@ -5,20 +5,23 @@ import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 
+import util from './utils/util';
+import statusCode from './utils/statusCode';
+import responseMessage from './utils/responseMessage';
 import routes from './global/routes';
 import globalRouter from './routes/globalRouter';
 import userRouter from './routes/userRouter';
 import postRouter from './routes/postRouter';
 
 import connectDB from './utils/db';
+
+//DB연결
 connectDB();
 
+//서버 사전작업
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
+//미들웨어 설정
 app.use(helmet({
   contentSecurityPolicy: false
 }));
@@ -27,26 +30,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+//라우터 설정
 app.use(routes.root, globalRouter);
 app.use(routes.user, userRouter);
 app.use(routes.post, postRouter);
 
-// catch 404 and forward to error handler
+
+// 아래는 에러 핸들링 함수들
+
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  let message = req.app.get('env') === 'development' ? err.message : {};
+  let errCode = err.status || statusCode.INTERNAL_SERVER_ERROR;
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  return res.status(errCode)
+    .send(util.fail(errCode, message));
 });
 
 module.exports = app;

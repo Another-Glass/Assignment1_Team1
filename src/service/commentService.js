@@ -75,7 +75,7 @@ export const creatCommentInComment = async (postId, commentId, userId, content) 
 export const updateComment = async (commentId, userId, content) => {
   try {
     const comments = await Comment.findByIdAndUpdate(commentId, { content: content }).lean();
-    console.log(comments);
+
     return comments;
   } catch (err) {
     throw err;
