@@ -68,3 +68,42 @@ export const readPostList = async (offset, limit) => {
     throw err;
   }
 }
+
+
+export const increaseViewCount = async (postId, viewCount) => {
+  try {
+    const post = await Post.findOneAndUpdate(
+      {
+        _id: postId
+      },
+      {
+        viewCount
+      }
+    );
+    return post;
+  } catch(err) {
+    throw err;
+  }
+}
+    
+
+export const searchPost = async (categoryId, offset, limit, title, content) => {
+  try {
+    const query = [];
+    
+    if(title === undefined && content === undefined) return null;
+
+    if(title) query.push({title: { $regex: title }});
+    if(content) query.push({content: { $regex: content }});
+    
+    const results = await Post.find({
+        $and: [{$or:query}, {"categoryIdx":categoryId}]
+      })
+      .sort({'createdAt': -1})
+      .limit(Number(limit))
+      .skip(Number(offset))
+      return results;
+  } catch (err) {
+    throw err;
+  }
+}

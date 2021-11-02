@@ -9,6 +9,7 @@ const USER_SIGNIN = '/signin';
 // Post
 const POST = '/posts';
 const POST_DETAIL = '/:postId';
+const POST_SEARCH = '/search/:categoryId';
 
 //comment
 const COMMENT = '/comments';
@@ -21,8 +22,9 @@ const routes = {
   signin: USER_SIGNIN,
   post: POST,
   postDetail: POST_DETAIL,
+  postSearch: POST_SEARCH,
+  commentDetail: COMMENT_DETAIL,
   comment: COMMENT,
-  commentDetail: COMMENT_DETAIL
 }
 
 export default routes;
