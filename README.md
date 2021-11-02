@@ -99,8 +99,7 @@
 - <details><summary><b>.env 파일 설정 방법</b></summary>
 
   ```
-  MONGO_URL="mongodb+srv://aimmo:4zpWMM3TWEcxb6eH@cluster0.tpues.mongodb.net/test"
-  4zpWMM3TWEcxb6eH"
+  MONGO_URL="mongoURL"
   PORT=4000
   JWT_SECERT="wanted"
   JWT_ALGO="HS256"
