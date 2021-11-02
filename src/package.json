@@ -5,7 +5,9 @@
   "author": "const",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec babel-node ./bin/www"
+    "start": "nodemon --exec babel-node ./bin/www",
+    "pmstart": "pm2 start ./bin/www",
+    "pmkill": "pm2 kill"
   },
   "dependencies": {
     "@babel/core": "^7.15.8",
@@ -21,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "mongoose-sequence": "^5.3.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "pm2": "^5.1.2"
   },
   "devDependencies": {
     "eslint": "^8.0.1",
