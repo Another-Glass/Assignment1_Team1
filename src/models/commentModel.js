@@ -2,30 +2,26 @@ const mongoose = require('mongoose');
 
 
 const CommentSchema = mongoose.Schema({
-    postId: {
-      type: Number,
-      ref: 'Post',
-      require: true,
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    parentCommentId: { // 1
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-    },
-    content: {
-      type: String,
-      required: true,
-    },
-    depth: {
-      type: Number,
-      default: 0,
-    }
+  postId: {
+    type: Number,
+    ref: 'Post',
+    require: true,
   },
-  { timestamps : true, versionKey: false },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  parentCommentId: { // 1
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment',
+  },
+  content: {
+    type: String,
+    required: true,
+  }
+},
+  { timestamps: true, versionKey: false },
 );
 
 CommentSchema.virtual('comments', {

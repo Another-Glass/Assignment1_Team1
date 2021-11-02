@@ -5,7 +5,7 @@ export default {
   WRONG_INDEX: '잘못된 인덱스 접근입니다.',
   DB_ERROR: 'DB 오류',
   INTERNAL_SERVER_ERROR: '서버 오류입니다.',
-  DUPLICATE_ERROR: '중복된 요청입니다.', 
+  DUPLICATE_ERROR: '중복된 요청입니다.',
   PERMISSION_ERROR: '권한이 없습니다.',
 
   // token
@@ -22,7 +22,7 @@ export default {
   SUCCESS_SNS_CHECK: '가입되어 있는 계정입니다.',
   FAIL_SNS_CHECK: '가입되어 있지 않은 계정입니다.',
   FAIL_SINGUP: '회원 가입 실패',
-  
+
   // 로그인
   LOGIN_SUCCESS: '로그인 성공',
   LOGIN_FAIL: '로그인 실패',
@@ -36,10 +36,10 @@ export default {
   READ_POST_SUCCESS: '게시글 조회 성공',
   READ_POST_FAIL: '게시글 조회 실패',
   UPDATE_POST_SUCCESS: '게시글 수정 성공',
-  UPDATE_POST_FAIL:  '게시글 수정 실패',
+  UPDATE_POST_FAIL: '게시글 수정 실패',
   DELETE_POST_SUCCESS: '게시글 삭제 성공',
   DELETE_POST_FAIL: '게시글 삭제 실패',
-  NO_POST: '해당 게시글이 없습니다.' ,
+  NO_POST: '해당 게시글이 없습니다.',
 
   //코멘트
   NO_COMMENT: '해당 댓글이 없습니다',

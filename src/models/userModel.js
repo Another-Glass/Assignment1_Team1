@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
   refreshToken: {
     type: String
   },
-}, { versionKey : false });
+}, { versionKey: false });
 
 UserSchema.virtual('posts', {
   ref: 'Post',

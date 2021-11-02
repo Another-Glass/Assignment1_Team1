@@ -7,7 +7,7 @@ export const createPost = async (title, content, categoryIdx, userId) => {
       content,
       userId,
       categoryIdx,
-      viewCount:0
+      viewCount: 0
     });
     return post;
   } catch (err) {
@@ -56,7 +56,7 @@ export const destroyPost = async (postId) => {
 export const readPostList = async (offset, limit) => {
   try {
     const postList = await Post.find()
-      .sort({'createdAt': -1})
+      .sort({ 'createdAt': -1 })
       .limit(limit)
       .skip(offset)
     return postList;
@@ -77,28 +77,28 @@ export const increaseViewCount = async (postId, viewCount) => {
       }
     );
     return post;
-  } catch(err) {
+  } catch (err) {
     throw err;
   }
 }
-    
+
 
 export const searchPost = async (categoryId, offset, limit, title, content) => {
   try {
     const query = [];
-    
-    if(title === undefined && content === undefined) return null;
 
-    if(title) query.push({title: { $regex: title }});
-    if(content) query.push({content: { $regex: content }});
-    
+    if (title === undefined && content === undefined) return null;
+
+    if (title) query.push({ title: { $regex: title } });
+    if (content) query.push({ content: { $regex: content } });
+
     const results = await Post.find({
-        $and: [{$or:query}, {"categoryIdx":categoryId}]
-      })
-      .sort({'createdAt': -1})
+      $and: [{ $or: query }, { "categoryIdx": categoryId }]
+    })
+      .sort({ 'createdAt': -1 })
       .limit(Number(limit))
       .skip(Number(offset))
-      return results;
+    return results;
   } catch (err) {
     throw err;
   }

@@ -5,11 +5,11 @@ const { ObjectId } = require('mongodb');
 export const readCommentsInPost = async (postId, offset, limit) => {
   try {
     const comments = await Comment.find({
-        postId:postId
+      postId: postId
     })
-    .sort({'createdAt': -1})
-    .limit(limit)
-    .skip(offset)
+      .sort({ 'createdAt': -1 })
+      .limit(limit)
+      .skip(offset)
 
     return comments;
   } catch (err) {
@@ -20,11 +20,11 @@ export const readCommentsInPost = async (postId, offset, limit) => {
 export const readCommentsInComment = async (commentId, offset, limit) => {
   try {
     const comments = await Comment.find({
-      parentCommentId:commentId
+      parentCommentId: commentId
     })
-    .sort({'createdAt': -1})
-    .limit(limit)
-    .skip(offset)
+      .sort({ 'createdAt': -1 })
+      .limit(limit)
+      .skip(offset)
 
     return comments;
   } catch (err) {
@@ -46,9 +46,9 @@ export const readComment = async (commentId) => {
 export const creatCommentInPost = async (postId, userId, content) => {
   try {
     const comment = await Comment.create({
-        postId: postId,
-        userId: userId,
-        content: content,
+      postId: postId,
+      userId: userId,
+      content: content,
     });
 
     return comment;
@@ -60,7 +60,7 @@ export const creatCommentInPost = async (postId, userId, content) => {
 export const creatCommentInComment = async (postId, commentId, userId, content) => {
   try {
     const comment = await Comment.create({
-      postId:postId,
+      postId: postId,
       parentCommentId: ObjectId(commentId),
       userId: userId,
       content: content,
@@ -74,7 +74,7 @@ export const creatCommentInComment = async (postId, commentId, userId, content) 
 
 export const updateComment = async (commentId, userId, content) => {
   try {
-    const comments = await Comment.findByIdAndUpdate(commentId, {content:content}).lean();
+    const comments = await Comment.findByIdAndUpdate(commentId, { content: content }).lean();
     console.log(comments);
     return comments;
   } catch (err) {

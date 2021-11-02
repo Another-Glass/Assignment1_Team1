@@ -11,12 +11,12 @@ export default {
             id: user.id,
             name: user.name
         };
-        
+
         const result = {
             accessToken: jwt.sign(payload, secretKey.secretKey, secretKey.options),
             refreshToken: jwt.sign(payload, secretKey.secretKey, secretKey.refreshOptions)
         };
-        
+
         await updateRefreshToken(user.id, result.refreshToken);
         return result;
     },
@@ -34,11 +34,11 @@ export default {
     refresh: async refreshToken => {
         try {
             const result = jwt.verify(refreshToken, secretKey.secretKey);
-                if (result.id === undefined) return TOKEN_INVALID;
-            
+            if (result.id === undefined) return TOKEN_INVALID;
+
             const user = await checkUserId(result.id);
             if (refreshToken !== user.refreshToken) return TOKEN_INVALID;
-            
+
             const payload = {
                 id: user.id,
                 name: user.name,
@@ -46,7 +46,7 @@ export default {
             const dto = {
                 accessToken: jwt.sign(payload, secretKey.secretKey, secretKey.options),
                 refreshToken: jwt.sign(payload, secretKey.secretKey, secretKey.refreshOptions),
-            } ;
+            };
             await userService.updateRefreshToken(user.id, dto.refreshToken);
             return dto;
         } catch (err) {

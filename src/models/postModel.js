@@ -4,7 +4,7 @@ import Comment from './commentModel';
 const autoIdSetter = require('../utils/db/auto-id-setter').autoIdSetter;
 
 const PostSchema = new mongoose.Schema({
-  _id : Number,
+  _id: Number,
   title: {
     type: String,
     required: true,
@@ -17,14 +17,14 @@ const PostSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  }, 
-  categoryIdx: { 
+  },
+  categoryIdx: {
     type: Number, required: true
   },
-  viewCount: { 
+  viewCount: {
     type: String, required: true
   }
-}, { _id : false, timestamps : true, versionKey: false });
+}, { _id: false, timestamps: true, versionKey: false });
 
 PostSchema.virtual('comments', {
   ref: 'Comment',

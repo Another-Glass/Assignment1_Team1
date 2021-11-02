@@ -3,7 +3,7 @@ import routes from '../global/routes';
 
 import { checkToken } from '../middlewares/auth';
 import { getPost, postPost, getPostList, putPost, deletePost, getSearchPost } from '../controllers/postController';
-import {getCommentInComment, postComment, deleteComment, putComment, getCommentList, postCommentInComment} from '../controllers/commentController';
+import { getCommentInComment, postComment, deleteComment, putComment, getCommentList, postCommentInComment } from '../controllers/commentController';
 
 const postRouter = express.Router();
 
@@ -16,12 +16,12 @@ postRouter.delete(routes.postDetail, checkToken, deletePost);
 
 postRouter.get(routes.postSearch, getSearchPost);
 
-postRouter.post(routes.postDetail+routes.comment, checkToken, postComment);
-postRouter.get(routes.postDetail+routes.comment, getCommentList);
-postRouter.get(routes.postDetail+routes.comment+routes.commentDetail, getCommentInComment);
-postRouter.post(routes.postDetail+routes.comment+routes.commentDetail, checkToken, postCommentInComment);
-postRouter.delete(routes.postDetail+routes.comment+routes.commentDetail, checkToken, deleteComment);
-postRouter.put(routes.postDetail+routes.comment+routes.commentDetail, checkToken, putComment);
+postRouter.post(routes.postDetail + routes.comment, checkToken, postComment);
+postRouter.get(routes.postDetail + routes.comment, getCommentList);
+postRouter.get(routes.postDetail + routes.comment + routes.commentDetail, getCommentInComment);
+postRouter.post(routes.postDetail + routes.comment + routes.commentDetail, checkToken, postCommentInComment);
+postRouter.delete(routes.postDetail + routes.comment + routes.commentDetail, checkToken, deleteComment);
+postRouter.put(routes.postDetail + routes.comment + routes.commentDetail, checkToken, putComment);
 
 
 export default postRouter;
