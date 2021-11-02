@@ -33,11 +33,22 @@ export default {
   // 게시판
   CREATE_POST_SUCCESS: '게시글 생성 성공',
   CREATE_POST_FAIL: '게시글 생성 실패',
-  READ_POST_SUCCESS: '게시글 상세 조회 성공',
-  READ_POST_FAIL: '게시글 상세 조회 실패',
+  READ_POST_SUCCESS: '게시글 조회 성공',
+  READ_POST_FAIL: '게시글 조회 실패',
   UPDATE_POST_SUCCESS: '게시글 수정 성공',
   UPDATE_POST_FAIL:  '게시글 수정 실패',
   DELETE_POST_SUCCESS: '게시글 삭제 성공',
   DELETE_POST_FAIL: '게시글 삭제 실패',
-  NO_POST: '해당 게시글이 없습니다.' 
+  NO_POST: '해당 게시글이 없습니다.' ,
+
+  //코멘트
+  NO_COMMENT: '해당 댓글이 없습니다',
+  READ_COMMENTLIST_SUCESS: '댓글 조회 성공',
+  CREATE_COMMENT_SUCCESS: "댓글 생성 성공",
+  UPDATE_COMMENT_SUCCESS: "댓글 수정 성공",
+  DELETE_COMMENT_SUCCESS: "댓글 삭제 성공",
+  CREATE_COMMENT_FAIL: "댓글 생성 실패",
+  UPDATE_COMMENT_FAIL: "댓글 수정 실패",
+  DELETE_COMMENT_FAIL: "댓글 삭제 실패"
+
 };

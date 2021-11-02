@@ -23,4 +23,15 @@ const UserSchema = new mongoose.Schema({
   },
 }, { versionKey : false });
 
+UserSchema.virtual('posts', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'userId',
+});
+UserSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'userid',
+});
+
 export default mongoose.model("User", UserSchema);

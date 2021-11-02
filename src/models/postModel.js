@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { Schema } from 'mongoose'
+import { Schema } from 'mongoose';
+import Comment from './commentModel';
 const autoIdSetter = require('../utils/db/auto-id-setter').autoIdSetter;
 
 const PostSchema = new mongoose.Schema({
@@ -22,8 +23,14 @@ const PostSchema = new mongoose.Schema({
   },
   viewCount: { 
     type: String, required: true
-  },
+  }
 }, { _id : false, timestamps : true, versionKey: false });
+
+PostSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'postId',
+});
 
 autoIdSetter(PostSchema, mongoose, 'post', '_id');
 

@@ -28,7 +28,6 @@ export const postPost = async(req, res) => {
 export const getPost = async(req, res) => {
   try {
     const { postId } = req.params;
-    const userId = req.decoded;
     
     if(postId === undefined) {
       return res.status(statusCode.BAD_REQUEST)
@@ -41,11 +40,15 @@ export const getPost = async(req, res) => {
       return res.status(statusCode.NOT_FOUND)
         .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
     }
-    if(post.userId.toString() !== userId) {
+    if (!req.cookies[`postId${postId}`]) {
+      console.log("increase viewCount");
       post.viewCount++;
       increaseViewCount(postId, post.viewCount);
     }
-    return res.status(statusCode.OK)
+  
+    return res.cookie(`postId${postId}`, postId, {
+      maxAge: 1000 * 60 * 5
+    }).status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, post));
   } catch {
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
@@ -59,7 +62,7 @@ export const putPost = async(req, res) => {
     const { postId } = req.params;
     const { title, content, categoryIdx } = req.body;
 
-    if(postId === undefined || (title === undefined && content === undefined && categoryIdx)) {
+    if(postId === undefined || (title === undefined && content === undefined && categoryIdx == undefined)) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
