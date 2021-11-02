@@ -2,7 +2,7 @@ import express from "express";
 import routes from '../global/routes';
 
 import { checkToken } from '../middlewares/auth';
-import { getPost, postPost, getPostList, putPost, deletePost } from '../controllers/postController';
+import { getPost, postPost, getPostList, putPost, deletePost, getSearchPost } from '../controllers/postController';
 
 const postRouter = express.Router();
 
@@ -13,5 +13,6 @@ postRouter.get(routes.postDetail, getPost);
 postRouter.put(routes.postDetail, checkToken, putPost);
 postRouter.delete(routes.postDetail, checkToken, deletePost);
 
+postRouter.get(routes.postSearch, getSearchPost);
 
 export default postRouter;

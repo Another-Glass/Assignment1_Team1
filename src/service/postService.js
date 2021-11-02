@@ -65,3 +65,43 @@ export const readPostList = async (offset, limit) => {
     throw err;
   }
 }
+
+export const searchPost = async (categoryId, offset, limit, title, userId, content) => {
+  try {
+    let query = [];
+    
+    if(title) query = await Post.find({
+      title: {$regex: title, $options: "i"},
+      categoryIdx: Number(categoryId)
+    })
+    .sort({'createdAt': -1})
+    .limit(Number(limit))
+    .skip(Number(offset))
+
+    if(userId) query = await Post.find({
+      title: {$regex: userId, $options: "i"}
+    })
+    .sort({'createdAt': -1})
+    .limit(Number(limit))
+    .skip(Number(offset))
+
+    if(content) query = await Post.find({
+      title: {$regex: content, $options: "i"}
+    })
+    .sort({'createdAt': -1})
+    .limit(Number(limit))
+    .skip(Number(offset))
+    
+    if(title && content) query = await Post.find({
+      title: {$regex: title, $options: "i"},
+      content: {$regex: content, $options: "i"}
+    })
+    .sort({'createdAt': -1})
+    .limit(Number(limit))
+    .skip(Number(offset))
+
+    return query;
+  } catch (err) {
+    throw err;
+  }
+}
