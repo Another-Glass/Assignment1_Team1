@@ -72,10 +72,10 @@ export const postComment = async (req, res) => {
         .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
     }
 
-    await creatCommentInPost(postId, id, content);
+    let comment = await creatCommentInPost(postId, id, content);
 
     return res.status(statusCode.CREATED)
-      .send(util.success(statusCode.CREATED, responseMessage.CREATE_COMMENT_SUCCESS));
+      .send(util.success(statusCode.CREATED, responseMessage.CREATE_COMMENT_SUCCESS, { id: comment._id }));
   } catch (err) {
     console.log(err);
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
@@ -100,10 +100,10 @@ export const postCommentInComment = async (req, res) => {
         .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_COMMENT));
     }
 
-    await creatCommentInComment(postId, commentId, id, content);
+    let resultComment = await creatCommentInComment(postId, commentId, id, content);
 
     return res.status(statusCode.CREATED)
-      .send(util.success(statusCode.CREATED, responseMessage.CREATE_COMMENT_SUCCESS));
+      .send(util.success(statusCode.CREATED, responseMessage.CREATE_COMMENT_SUCCESS, { id: resultComment._id }));
   } catch (err) {
     console.log(err);
     return res.status(statusCode.INTERNAL_SERVER_ERROR)

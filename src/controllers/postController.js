@@ -14,10 +14,10 @@ export const postPost = async (req, res) => {
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
 
-    await createPost(title, content, categoryIdx, id);
+    let post = await createPost(title, content, categoryIdx, id);
 
     return res.status(statusCode.CREATED)
-      .send(util.success(statusCode.CREATED, responseMessage.CREATE_POST_SUCCESS));
+      .send(util.success(statusCode.CREATED, responseMessage.CREATE_POST_SUCCESS, { id: post._id }));
   } catch (err) {
     console.log(err);
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
