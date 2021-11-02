@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import routes from './global/routes';
 import globalRouter from './routes/globalRouter';
 import userRouter from './routes/userRouter';
-// import postRouter from './routes/postRouter';
+import postRouter from './routes/postRouter';
 
 import connectDB from './utils/db';
 connectDB();
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes.root, globalRouter);
 app.use(routes.user, userRouter);
-// app.use(routes.post, postRouter);
+app.use(routes.post, postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
