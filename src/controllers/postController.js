@@ -136,14 +136,14 @@ export const getPostList = async(req, res) => {
 export const getSearchPost = async(req, res) => {
   try {
     const { categoryId } = req.params;
-    const { offset, limit, title, userId, content } = req.query;
+    const { offset, limit, title, content } = req.query;
     
     if(offset === undefined || limit === undefined) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
     
-    const postSearch = await searchPost(categoryId, offset, limit, title, userId, content);
+    const postSearch = await searchPost(categoryId, offset, limit, title, content);
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, postSearch));
   } catch(err) {

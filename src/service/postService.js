@@ -69,41 +69,22 @@ export const readPostList = async (offset, limit) => {
   }
 }
 
-export const searchPost = async (categoryId, offset, limit, title, userId, content) => {
+export const searchPost = async (categoryId, offset, limit, title, content) => {
   try {
-    let query = [];
+    const query = [];
     
-    if(title) query = await Post.find({
-      title: {$regex: title, $options: "i"},
-      categoryIdx: Number(categoryId)
-    })
-    .sort({'createdAt': -1})
-    .limit(Number(limit))
-    .skip(Number(offset))
+    if(title === undefined && content === undefined) return null;
 
-    if(userId) query = await Post.find({
-      title: {$regex: userId, $options: "i"}
-    })
-    .sort({'createdAt': -1})
-    .limit(Number(limit))
-    .skip(Number(offset))
-
-    if(content) query = await Post.find({
-      title: {$regex: content, $options: "i"}
-    })
-    .sort({'createdAt': -1})
-    .limit(Number(limit))
-    .skip(Number(offset))
+    if(title) query.push({title: { $regex: title }});
+    if(content) query.push({content: { $regex: content }});
     
-    if(title && content) query = await Post.find({
-      title: {$regex: title, $options: "i"},
-      content: {$regex: content, $options: "i"}
-    })
-    .sort({'createdAt': -1})
-    .limit(Number(limit))
-    .skip(Number(offset))
-
-    return query;
+    const results = await Post.find({
+        $and: [{$or:query}, {"categoryIdx":categoryId}]
+      })
+      .sort({'createdAt': -1})
+      .limit(Number(limit))
+      .skip(Number(offset))
+      return results;
   } catch (err) {
     throw err;
   }
