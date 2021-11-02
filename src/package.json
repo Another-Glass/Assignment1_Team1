@@ -1,0 +1,30 @@
+{
+  "name": "wanted_backend",
+  "version": "1.0.0",
+  "description": "wanted_backend_pre_assignment",
+  "author": "const",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec babel-node ./bin/www"
+  },
+  "dependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "helmet": "^4.6.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.13",
+    "prettier": "2.4.1"
+  }
+}
