@@ -4,7 +4,7 @@ import routes from '../global/routes';
 const globalRouter = express.Router();
 
 globalRouter.get(routes.root, function (req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.send("HelloWorld");
 });
 
 export default globalRouter;

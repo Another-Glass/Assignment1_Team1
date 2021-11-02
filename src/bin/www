@@ -1,35 +1,25 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
 var debug = require('debug')('src:server');
 var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
 
+//포트 노멀라이즈
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
+//서버생성
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+//서버 시작
 server.listen(port, function () {
   console.log(`🔥Server on! http://localhost:${port}`)
 });
 server.on('error', onError);
 server.on('listening', onListening);
+
+//아래는 함수들
 
 /**
  * Normalize a port into a number, string, or false.
