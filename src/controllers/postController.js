@@ -36,6 +36,11 @@ export const getPost = async(req, res) => {
     
     const post = await readPost(postId);
     
+    if(post === null) {
+      return res.status(statusCode.NOT_FOUND)
+        .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
+    } 
+
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, post));
   } catch {
@@ -50,14 +55,19 @@ export const putPost = async(req, res) => {
     const { postId } = req.params;
     const { title, content, categoryIdx } = req.body;
 
-    if(postId === undefined || title === undefined || content === undefined) {
+    if(postId === undefined || (title === undefined && content === undefined && categoryIdx)) {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
     
     const findUserId = await readPost(postId);
     
-    if(findUserId === null || findUserId.userId.toString() !== id) {
+    
+    if(findUserId === null) {
+      return res.status(statusCode.NOT_FOUND)
+        .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
+    } 
+    if(findUserId.userId.toString() !== id) {
       return res.status(statusCode.UNAUTHORIZED)
         .send(util.fail(statusCode.UNAUTHORIZED, responseMessage.PERMISSION_ERROR));
     } 
@@ -83,16 +93,21 @@ export const deletePost = async(req, res) => {
     }
     
     const findUserId = await readPost(postId);
-    
-    if(findUserId === null || findUserId.userId !== id) {
+
+    if(findUserId === null) {
+      return res.status(statusCode.NOT_FOUND)
+        .send(util.fail(statusCode.NOT_FOUND, responseMessage.NO_POST));
+    } 
+
+    if(findUserId.userId.toString() !== id) {
       return res.status(statusCode.UNAUTHORIZED)
         .send(util.fail(statusCode.UNAUTHORIZED, responseMessage.PERMISSION_ERROR));
     } 
     
     await destroyPost(postId);
-    
-    return res.status(statusCode.NO_CONTENT)
-      .send(util.success(statusCode.NO_CONTENT, responseMessage.DELETE_POST_SUCCESS));
+
+    return res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, responseMessage.DELETE_POST_SUCCESS));
   } catch {
     return res.status(statusCode.INTERNAL_SERVER_ERROR)
       .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_POST_FAIL))
