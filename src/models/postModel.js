@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Schema } from 'mongoose'
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -10,7 +11,8 @@ const PostSchema = new mongoose.Schema({
     required: true
   },
   userId: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   }
 });
