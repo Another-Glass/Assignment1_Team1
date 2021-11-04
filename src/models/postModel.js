@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
-import Comment from './commentModel';
-const autoIdSetter = require('../utils/db/auto-id-setter').autoIdSetter;
+import Comment from './commentModel.js';
+const autoIdSetter = require('./autoIdSetter').autoIdSetter;
 
 const PostSchema = new mongoose.Schema({
   _id: Number,

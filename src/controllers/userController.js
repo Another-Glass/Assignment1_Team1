@@ -1,10 +1,8 @@
-import util from '../utils/util';
-import statusCode from '../utils/statusCode';
-import responseMessage from '../utils/responseMessage';
-import encrypt from '../lib/encryption';
-import jwt from '../lib/jwt';
-
-import { signup, checkEmail, signin } from '../service/userService';
+import util from '../utils/resFormatter.js';
+import { statusCode, responseMessage } from '../globals/*';
+import * as userService from '../services/userService.js';
+import encryption from '../libs/encryption.js';
+import jwt from '../libs/jwt.js';
 
 //회원가입
 export const postSignup = async (req, res) => {
@@ -16,7 +14,7 @@ export const postSignup = async (req, res) => {
       return res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
-    const isEmail = await checkEmail(email);
+    const isEmail = await userService.checkEmail(email);
 
     //이메일 중복
     if (isEmail) {
@@ -31,18 +29,16 @@ export const postSignup = async (req, res) => {
     }
 
     //암호화
-    const salt = encrypt.makeSalt();
-    const encryptPassword = encrypt.encryption(password, salt);
+    const salt = encryption.makeSalt();
+    const encryptPassword = encryption.encrypt(password, salt);
 
     //쿼리실행
-    await signup(name, email, encryptPassword, salt);
+    await userService.signup(name, email, encryptPassword, salt);
 
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.CREATED_USER));
-  } catch {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.FAIL_SINGUP))
+  } catch (err) {
+    next(err);
   }
 }
 
@@ -57,7 +53,7 @@ export const postSignin = async (req, res) => {
         .send(util.fail(statusCode.BAD_REQUEST, responseMessage.NULL_VALUE));
     }
 
-    const isEmail = await checkEmail(email);
+    const isEmail = await userService.checkEmail(email);
 
     //이메일 중복
     if (!isEmail) {
@@ -68,7 +64,7 @@ export const postSignin = async (req, res) => {
     //확인용 암호화
     const { salt, password: realPassword } = isEmail;
 
-    const inputPassword = encrypt.encryption(password, salt);
+    const inputPassword = encryption.encrypt(password, salt);
 
     //패스워드 불일치
     if (inputPassword !== realPassword) {
@@ -77,7 +73,7 @@ export const postSignin = async (req, res) => {
     }
 
     //쿼리 실행
-    const user = await signin(email, inputPassword);
+    const user = await userService.signin(email, inputPassword);
 
     //토큰 반환
     const { accessToken, refreshToken } = await jwt.sign(user);
@@ -88,8 +84,6 @@ export const postSignin = async (req, res) => {
         refreshToken
       }))
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.LOGIN_FAIL))
+    next(err);
   }
 }

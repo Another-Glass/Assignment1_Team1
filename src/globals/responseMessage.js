@@ -21,24 +21,24 @@ export default {
   AVAILABLE_USERNAME: '사용 가능한 아이디입니다.',
   SUCCESS_SNS_CHECK: '가입되어 있는 계정입니다.',
   FAIL_SNS_CHECK: '가입되어 있지 않은 계정입니다.',
-  FAIL_SINGUP: '회원 가입 실패',
+  //FAIL_SINGUP: '회원 가입 실패',
 
   // 로그인
   LOGIN_SUCCESS: '로그인 성공',
-  LOGIN_FAIL: '로그인 실패',
+  //LOGIN_FAIL: '로그인 실패',
   LOGOUT_SUCCESS: '로그아웃 성공',
   NO_USER: '존재하지 않는 회원입니다.',
   MISS_MATCH_PW: '비밀번호가 맞지 않습니다.',
 
   // 게시판
   CREATE_POST_SUCCESS: '게시글 생성 성공',
-  CREATE_POST_FAIL: '게시글 생성 실패',
+  //CREATE_POST_FAIL: '게시글 생성 실패',
   READ_POST_SUCCESS: '게시글 조회 성공',
   READ_POST_FAIL: '게시글 조회 실패',
   UPDATE_POST_SUCCESS: '게시글 수정 성공',
-  UPDATE_POST_FAIL: '게시글 수정 실패',
+  //UPDATE_POST_FAIL: '게시글 수정 실패',
   DELETE_POST_SUCCESS: '게시글 삭제 성공',
-  DELETE_POST_FAIL: '게시글 삭제 실패',
+  //DELETE_POST_FAIL: '게시글 삭제 실패',
   NO_POST: '해당 게시글이 없습니다.',
 
   //코멘트
@@ -47,8 +47,8 @@ export default {
   CREATE_COMMENT_SUCCESS: "댓글 생성 성공",
   UPDATE_COMMENT_SUCCESS: "댓글 수정 성공",
   DELETE_COMMENT_SUCCESS: "댓글 삭제 성공",
-  CREATE_COMMENT_FAIL: "댓글 생성 실패",
-  UPDATE_COMMENT_FAIL: "댓글 수정 실패",
-  DELETE_COMMENT_FAIL: "댓글 삭제 실패"
+  //CREATE_COMMENT_FAIL: "댓글 생성 실패",
+  //UPDATE_COMMENT_FAIL: "댓글 수정 실패",
+  //DELETE_COMMENT_FAIL: "댓글 삭제 실패"
 
 };

@@ -1,4 +1,4 @@
-import User from '../models/userModel';
+import User from '../models/userModel.js';
 
 export const signup = async (name, email, password, salt) => {
   try {

@@ -1,7 +1,7 @@
-import jwt from '../lib/jwt';
-import util from '../utils/util';
-import statusCode from '../utils/statusCode';
-import responseMessage from '../utils/responseMessage';
+import jwt from '../libs/jwt.js';
+import util from '../utils/resFormatter.js';
+import statusCode from '../globals/statusCode.js';
+import responseMessage from '../globals/responseMessage.js';
 
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;

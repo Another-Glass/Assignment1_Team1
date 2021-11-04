@@ -1,38 +1,38 @@
 import express from "express";
-import routes from '../global/routes';
+import routes from '../globals/routes.js';
 
-import { checkToken } from '../middlewares/auth';
-import { getPost, postPost, getPostList, putPost, deletePost, getSearchPost } from '../controllers/postController';
-import { getCommentInComment, postComment, deleteComment, putComment, getCommentList, postCommentInComment } from '../controllers/commentController';
+import { checkToken } from '../middlewares/auth.js';
+import * as postController from '../controllers/postController.js';
+import * as commentController from '../controllers/commentController.js';
 
 const postRouter = express.Router();
 
 //게시글 조회
-postRouter.get(routes.root, getPostList);
+postRouter.get(routes.root, postController.getPostList);
 //게시글 생성
-postRouter.post(routes.root, checkToken, postPost);
+postRouter.post(routes.root, checkToken, postController.postPost);
 
 //게시글 상세조회
-postRouter.get(routes.postDetail, checkToken, getPost);
+postRouter.get(routes.postDetail, checkToken, postController.getPost);
 //게시글 수정
-postRouter.put(routes.postDetail, checkToken, putPost);
+postRouter.put(routes.postDetail, checkToken, postController.putPost);
 //게시글 삭제
-postRouter.delete(routes.postDetail, checkToken, deletePost);
+postRouter.delete(routes.postDetail, checkToken, postController.deletePost);
 //게시글 검색
-postRouter.get(routes.postSearch, getSearchPost);
+postRouter.get(routes.postSearch, postController.getSearchPost);
 
 //댓글 생성
-postRouter.post(routes.postDetail + routes.comment, checkToken, postComment);
+postRouter.post(routes.postDetail + routes.comment, checkToken, commentController.postComment);
 //댓글 조회
-postRouter.get(routes.postDetail + routes.comment, getCommentList);
+postRouter.get(routes.postDetail + routes.comment, commentController.getCommentList);
 //대댓글 조회
-postRouter.get(routes.postDetail + routes.comment + routes.commentDetail, getCommentInComment);
+postRouter.get(routes.postDetail + routes.comment + routes.commentDetail, commentController.getCommentInComment);
 //대댓글 생성
-postRouter.post(routes.postDetail + routes.comment + routes.commentDetail, checkToken, postCommentInComment);
+postRouter.post(routes.postDetail + routes.comment + routes.commentDetail, checkToken, commentController.postCommentInComment);
 //댓글or대댓글 수정
-postRouter.delete(routes.postDetail + routes.comment + routes.commentDetail, checkToken, deleteComment);
+postRouter.delete(routes.postDetail + routes.comment + routes.commentDetail, checkToken, commentController.deleteComment);
 //댓글or대댓글 삭제
-postRouter.put(routes.postDetail + routes.comment + routes.commentDetail, checkToken, putComment);
+postRouter.put(routes.postDetail + routes.comment + routes.commentDetail, checkToken, commentController.putComment);
 
 
 export default postRouter;

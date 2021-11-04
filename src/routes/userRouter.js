@@ -1,7 +1,7 @@
 import express from "express";
-import routes from '../global/routes';
+import routes from '../globals/routes.js';
 
-import { postSignup, postSignin } from '../controllers/userController';
+import { postSignup, postSignin } from '../controllers/userController.js';
 
 const userRouter = express.Router();
 

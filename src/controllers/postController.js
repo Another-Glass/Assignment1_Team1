@@ -1,11 +1,12 @@
-import util from '../utils/util';
-import statusCode from '../utils/statusCode';
-import responseMessage from '../utils/responseMessage';
+import util from '../utils/resFormatter.js';
+import { statusCode, responseMessage } from '../globals/*';
+import logger from '../utils/logger';
 
-import { createPost, readPost, updatePost, destroyPost, readPostList, increaseViewCount, searchPost } from '../service/postService';
+import * as postService from '../services/postService.js';
+import { createError } from 'http-errors';
 
 //게시글 생성
-export const postPost = async (req, res) => {
+export const postPost = async (req, res, next) => {
   try {
     const id = req.decoded;
     const { title, content, categoryIdx } = req.body;
@@ -17,14 +18,12 @@ export const postPost = async (req, res) => {
     }
 
     //쿼리실행
-    let post = await createPost(title, content, categoryIdx, id);
+    let post = await postService.createPost(title, content, categoryIdx, id);
 
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.CREATE_POST_SUCCESS, { id: post._id }));
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.CREATE_POST_FAIL))
+    next(err);
   }
 }
 
@@ -40,7 +39,7 @@ export const getPost = async (req, res) => {
     }
 
     //쿼리 실행
-    const post = await readPost(postId);
+    const post = await postService.readPost(postId);
 
     //게시글 유무 확인
     if (post === null) {
@@ -52,7 +51,7 @@ export const getPost = async (req, res) => {
     if (!req.cookies[`postId${postId}`]) {
       console.log("increase viewCount");
       post.viewCount++;
-      increaseViewCount(postId, post.viewCount);
+      postService.increaseViewCount(postId, post.viewCount);
     }
 
     //조회수 체크를 위한 쿠키
@@ -60,10 +59,8 @@ export const getPost = async (req, res) => {
       maxAge: 1000 * 60 * 5
     }).status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, post));
-  } catch {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
+  } catch (err) {
+    next(err);
   }
 }
 
@@ -81,7 +78,7 @@ export const putPost = async (req, res) => {
     }
 
     //사전 쿼리
-    const post = await readPost(postId);
+    const post = await postService.readPost(postId);
 
     //게시글 유무 확인
     if (post === null) {
@@ -96,14 +93,12 @@ export const putPost = async (req, res) => {
     }
 
     //쿼리 실행
-    await updatePost(title, content, categoryIdx, postId);
+    await postService.updatePost(title, content, categoryIdx, postId);
 
     return res.status(statusCode.CREATED)
       .send(util.success(statusCode.CREATED, responseMessage.UPDATE_POST_SUCCESS));
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.UPDATE_POST_FAIL))
+    next(err);
   }
 }
 
@@ -120,7 +115,7 @@ export const deletePost = async (req, res) => {
     }
 
     //사전 쿼리
-    const post = await readPost(postId);
+    const post = await postService.readPost(postId);
 
     //게시글 유무
     if (post === null) {
@@ -135,14 +130,12 @@ export const deletePost = async (req, res) => {
     }
 
     //쿼리 실행
-    await destroyPost(postId);
+    await postService.destroyPost(postId);
 
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.DELETE_POST_SUCCESS));
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.DELETE_POST_FAIL))
+    next(err);
   }
 }
 
@@ -158,14 +151,12 @@ export const getPostList = async (req, res) => {
     }
 
     //쿼리 실행
-    const postList = await readPostList(Number(offset), Number(limit));
+    const postList = await postService.readPostList(Number(offset), Number(limit));
 
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, postList));
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
+    next(err);
   }
 }
 
@@ -181,13 +172,11 @@ export const getSearchPost = async (req, res) => {
     }
 
     //쿼리 실행
-    const postSearch = await searchPost(categoryId, offset, limit, title, content);
+    const postSearch = await postService.searchPost(categoryId, offset, limit, title, content);
 
     return res.status(statusCode.OK)
       .send(util.success(statusCode.OK, responseMessage.READ_POST_SUCCESS, postSearch));
   } catch (err) {
-    console.log(err);
-    return res.status(statusCode.INTERNAL_SERVER_ERROR)
-      .send(util.fail(statusCode.INTERNAL_SERVER_ERROR, responseMessage.READ_POST_FAIL))
+    next(err);
   }
 }

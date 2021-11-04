@@ -1,5 +1,5 @@
-import Comment from '../models/commentModel'
-import Post from '../models/postModel'
+import Comment from '../models/commentModel.js'
+import Post from '../models/postModel.js'
 const { ObjectId } = require('mongodb');
 
 export const readCommentsInPost = async (postId, offset, limit) => {

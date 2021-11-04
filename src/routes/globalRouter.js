@@ -1,5 +1,5 @@
 import express from 'express';
-import routes from '../global/routes';
+import routes from '../globals/routes.js';
 
 const globalRouter = express.Router();
 

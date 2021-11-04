@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-
-var app = require('../app');
-var debug = require('debug')('src:server');
-var http = require('http');
+import app from '../app.js'
+import logger from '../utils/logger.js';
+import http from 'http';
 
 
 //포트 노멀라이즈
@@ -14,7 +13,7 @@ var server = http.createServer(app);
 
 //서버 시작
 server.listen(port, function () {
-  console.log(`🔥Server on! http://localhost:${port}`)
+  logger.log(`🔥Server on! http://localhost:${port}`)
 });
 server.on('error', onError);
 server.on('listening', onListening);
@@ -57,11 +56,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.err(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.err(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -78,5 +77,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  logger.log('Listening on ' + bind);
 }
